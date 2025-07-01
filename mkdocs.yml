@@ -1,77 +1,131 @@
-site_name: Записки Go разработчика
-site_description: Заметки Go разработчика
-site_author: i4ox
-site_url: https://i4ox.github.io/go-notes
+site_name: Справочик Golang разработчика
+site_description: Справочник Golang разработчика
+site_author: arthur-lokhov
+site_url: https://arthur-lokhov.github.io/go-notes
+extra:
+  homepage: https://arthur-lokhov.github.io/go-notes 
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/arthur-lokhov/go-notes.git
+  consent:
+    title: Использование cookies
+    accent:
+      - accept
+      - manage
+      - reject
+    description: >-
+      Мы используем cookies для распознавания ваших повторных посещений и предпочтений, а также для измерения эффективности нашей документации и того, насколько легко пользователи находят нужную информацию. Согласившись, вы помогаете нам сделать сайт лучше и удобнее.
+  generator: false
+copyright: >
+  Copyright &copy; 2025 Справочник Golang разработчика — <a href="#__consent">Изменить настройки cookies</a>
+
 theme:
   name: material
-  language: ru
-  features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.top
-    - search.suggest
-    - search.highlight
-    - content.tabs.link
-    - content.code.annotation
-    - content.code.copy
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  font:
+    text: JetBrains Mono
   palette:
-    - scheme: default
-      primary: blue
-      accent: purple
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+  features:
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.top
+    - navigation.indexes
+    - navigation.expand
+    - navigation.sections
+    - header.autohide
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+
 markdown_extensions:
-  - admonition
-  - pymdownx.highlight:
-      anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - admonition
-  - pymdownx.arithmatex:
-      generic: true
-  - footnotes
-  - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.critic
+  - pymdownx.caret
   - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.magiclink
+  - admonition
   - attr_list
+  - md_in_html
+  - footnotes
+  - def_list
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+plugins:
+  - search
+  - tags
+  - privacy
+
 nav:
-  - Go:
-      - Основы языка:
-          - go/basics/packages.md
-          - go/basics/variables.md
-          - go/basics/control-flow.md
-          - go/basics/functions.md
-          - go/basics/methods.md
-      - Продвинутые темы:
-          - go/advanced/strings.md
-          - go/advanced/enum.md
-          - go/advanced/arrays-slices.md
-          - go/advanced/maps.md
-          - go/advanced/interfaces.md
-          - go/advanced/generics.md
-          - go/advanced/errors.md
-          - go/advanced/concurrency.md
-          - go/advanced/context.md
-      - Go изнутри:
-          - go/sdk/runtime.md
-          - go/sdk/directives.md
-          - go/sdk/garbage-collector.md
-  - Контейнеризация:
-      - Теория по Docker:
-          - docker/installation.md
-          - docker/architecture.md
-          - docker/ufs.md
-          - docker/containers.md
-          - docker/dockerfile.md
-          - docker/volumes.md
-          - docker/registry.md
-          - docker/commands.md
-      - Практика Docker:
-          - docker/index.md
-      - Kubernetes:
-          - k8s/index.md
-extra:
-  social:
-    - icon: fontawesome/brands/github-alt
-      link: https://github.com/i4ox
+  - Главная: index.md
+  # - Golang: go/index.md
+# nav:
+#   - Go:
+#       - Основы языка:
+#           - go/basics/packages.md
+#           - go/basics/variables.md
+#           - go/basics/control-flow.md
+#           - go/basics/functions.md
+#           - go/basics/methods.md
+#       - Продвинутые темы:
+#           - go/advanced/strings.md
+#           - go/advanced/enum.md
+#           - go/advanced/arrays-slices.md
+#           - go/advanced/maps.md
+#           - go/advanced/interfaces.md
+#           - go/advanced/generics.md
+#           - go/advanced/errors.md
+#           - go/advanced/concurrency.md
+#           - go/advanced/context.md
+#       - Go изнутри:
+#           - go/sdk/runtime.md
+#           - go/sdk/directives.md
+#           - go/sdk/garbage-collector.md
+#   - Контейнеризация:
+#       - Теория по Docker:
+#           - docker/installation.md
+#           - docker/architecture.md
+#           - docker/ufs.md
+#           - docker/containers.md
+#           - docker/dockerfile.md
+#           - docker/volumes.md
+#           - docker/registry.md
+#           - docker/commands.md
+#       - Практика Docker:
+#           - docker/index.md
+#       - Kubernetes:
+#           - k8s/index.md
+
