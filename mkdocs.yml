@@ -91,13 +91,33 @@ plugins:
 
 nav:
   - Главная: index.md
-  # - Golang: go/index.md
+  - Go:
+    - 📘 Основы языка:
+      - go/basics/packages.md
+      - go/basics/variables.md
+      # - go/basics/control-flow.md
+    # - 🔹 Типы данных в Go:
+    #   - go/types/interfaces.md
+    #   - go/types/structs.md
+    #   - go/types/numbers.md
+    #   - go/types/strings.md
+    #   - go/types/bools.md
+    #   - go/types/arrays-slices.md
+    #   - go/types/maps.md
+    #   - go/types/type-casts.md
+    #   - go/types/generics.md
+    # - Продвинутые темы:
+    #   - go/advanced/modules.md
+    #   - go/advanced/generics.md
+    #   - go/advanced/errors.md
+    #   - go/advanced/concurrency.md
+    #   - go/advanced/context.md
+    # - ⚙️ Go Engine:
+    #   - go/sdk/runtime.md
+
 # nav:
 #   - Go:
 #       - Основы языка:
-#           - go/basics/packages.md
-#           - go/basics/variables.md
-#           - go/basics/control-flow.md
 #           - go/basics/functions.md
 #           - go/basics/methods.md
 #       - Продвинутые темы:
@@ -105,11 +125,6 @@ nav:
 #           - go/advanced/enum.md
 #           - go/advanced/arrays-slices.md
 #           - go/advanced/maps.md
-#           - go/advanced/interfaces.md
-#           - go/advanced/generics.md
-#           - go/advanced/errors.md
-#           - go/advanced/concurrency.md
-#           - go/advanced/context.md
 #       - Go изнутри:
 #           - go/sdk/runtime.md
 #           - go/sdk/directives.md

@@ -186,6 +186,12 @@ Test snippet
 
 ## 🧠 Footnote
 
+```markdown
+Footnote[^1]
+
+[^1]: Text of footnote
+```
+
 Footnote[^1]
 
 [^1]: Text of footnote
