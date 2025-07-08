@@ -95,6 +95,7 @@ nav:
     - 📘 Основы языка:
       - go/basics/packages.md
       - go/basics/variables.md
+      - go/basics/structs.md
       # - go/basics/control-flow.md
     # - 🔹 Типы данных в Go:
     #   - go/types/interfaces.md
