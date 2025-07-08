@@ -121,7 +121,7 @@ type Example struct {
 
     !!! info "Сочетая оператор `&` и композитивный литерал, вы можете создать указатель на структуру."
 
-    ```go
+    ```go hl_lines="9 12"
     type Car struct {
         Make  string
         Model string
