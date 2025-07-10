@@ -91,11 +91,18 @@ plugins:
 
 nav:
   - Главная: index.md
-  - Go:
-    - 📘 Основы языка:
+  - 📘 Go:
+    - go/index.md
+    - Основы языка:
       - go/basics/packages.md
       - go/basics/variables.md
       - go/basics/structs.md
+  - 🏗️ 12F:
+    - 12f/index.md
+  - Инструменты:
+    - tools/index.md
+    - tools/ssh.md
+    - tools/jj.md
       # - go/basics/control-flow.md
     # - 🔹 Типы данных в Go:
     #   - go/types/interfaces.md
