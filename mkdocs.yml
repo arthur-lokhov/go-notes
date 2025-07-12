@@ -99,7 +99,8 @@ nav:
       - go/basics/structs.md
   - 🏗️ 12F:
     - 12f/index.md
-  - Инструменты:
+    - 12f/0_12f.md
+  - 🛠️ Инструменты:
     - tools/index.md
     - tools/ssh.md
     - tools/jj.md
