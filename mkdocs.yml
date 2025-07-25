@@ -94,61 +94,21 @@ nav:
   - 📘 Go:
     - go/index.md
     - Основы языка:
-      - go/basics/packages.md
-      - go/basics/variables.md
-      - go/basics/structs.md
+      - go/packages.md
+      # - go/scopes.md
+      - go/variables.md
+      # - go/const.md
+      # - go/types.md
+      # - go/functions.md
+      - go/structs.md
+    - Продвинутые темы:
+      - go/advanced/modules.md
+      # - go/advanced/godoc.md
+    - Стандартная библиотека:
+      - go/std/flag.md
   - 🏗️ 12F:
     - 12f/index.md
     - 12f/0_12f.md
   - 🛠️ Инструменты:
     - tools/index.md
     - tools/colima.md
-      # - go/basics/control-flow.md
-    # - 🔹 Типы данных в Go:
-    #   - go/types/interfaces.md
-    #   - go/types/structs.md
-    #   - go/types/numbers.md
-    #   - go/types/strings.md
-    #   - go/types/bools.md
-    #   - go/types/arrays-slices.md
-    #   - go/types/maps.md
-    #   - go/types/type-casts.md
-    #   - go/types/generics.md
-    # - Продвинутые темы:
-    #   - go/advanced/modules.md
-    #   - go/advanced/generics.md
-    #   - go/advanced/errors.md
-    #   - go/advanced/concurrency.md
-    #   - go/advanced/context.md
-    # - ⚙️ Go Engine:
-    #   - go/sdk/runtime.md
-
-# nav:
-#   - Go:
-#       - Основы языка:
-#           - go/basics/functions.md
-#           - go/basics/methods.md
-#       - Продвинутые темы:
-#           - go/advanced/strings.md
-#           - go/advanced/enum.md
-#           - go/advanced/arrays-slices.md
-#           - go/advanced/maps.md
-#       - Go изнутри:
-#           - go/sdk/runtime.md
-#           - go/sdk/directives.md
-#           - go/sdk/garbage-collector.md
-#   - Контейнеризация:
-#       - Теория по Docker:
-#           - docker/installation.md
-#           - docker/architecture.md
-#           - docker/ufs.md
-#           - docker/containers.md
-#           - docker/dockerfile.md
-#           - docker/volumes.md
-#           - docker/registry.md
-#           - docker/commands.md
-#       - Практика Docker:
-#           - docker/index.md
-#       - Kubernetes:
-#           - k8s/index.md
-
