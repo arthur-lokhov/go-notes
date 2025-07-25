@@ -1,0 +1,1942 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Справочник Golang разработчика">
+      
+      
+        <meta name="author" content="arthur-lokhov">
+      
+      
+        <link rel="canonical" href="https://arthur-lokhov.github.io/go-notes/tools/colima/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Colima - Справочик Golang разработчика</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="../../assets/external/fonts.googleapis.com/css.a4dcec7c.css">
+        <style>:root{--md-text-font:"JetBrains Mono";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#colima-docker-containers-macos-linux" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://arthur-lokhov.github.io/go-notes" title="Справочик Golang разработчика" class="md-header__button md-logo" aria-label="Справочик Golang разработчика" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Справочик Golang разработчика
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Colima
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Главная
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../go/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📘 Go
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../12f/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏗️ 12F
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🛠️ Инструменты
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://arthur-lokhov.github.io/go-notes" title="Справочик Golang разработчика" class="md-nav__button md-logo" aria-label="Справочик Golang разработчика" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Справочик Golang разработчика
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Главная
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../go/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    📘 Go
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            📘 Go
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Основы языка
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Основы языка
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../go/packages.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../go/variables.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../go/structs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Продвинутые темы
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Продвинутые темы
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../go/advanced/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Модули
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Стандартная библиотека
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Стандартная библиотека
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../go/std/flag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Пакет flag
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../12f/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    🏗️ 12F
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🏗️ 12F
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12f/0_12f/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Что такое 12-Factor App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    🛠️ Инструменты
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            🛠️ Инструменты
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Colima
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Colima
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#colima" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Что такое Colima?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colima_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤔 Зачем использовать Colima?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Предварительные требования
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Подробное описание команд
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Подробное описание команд">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colima-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-stop" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima stop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima restart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima delete
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-list-ls" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima list / ls
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima ssh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-ssh-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima ssh-config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima kubernetes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-nerdctl" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima nerdctl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-completion" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima completion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-prune" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima prune
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima update
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima help
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#colima" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Что такое Colima?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colima_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤔 Зачем использовать Colima?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Предварительные требования
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Подробное описание команд
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Подробное описание команд">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colima-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-stop" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima stop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima restart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima delete
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-list-ls" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima list / ls
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima ssh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-ssh-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima ssh-config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima kubernetes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-nerdctl" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima nerdctl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-completion" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima completion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-prune" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima prune
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima update
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colima-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      colima help
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="colima-docker-containers-macos-linux">🐧 Colima: Docker и Containers на macOS и Linux</h1>
+<h2 id="colima">🚀 Что такое Colima?</h2>
+<p><strong>Colima</strong> — это легковесная утилита с открытым исходным кодом, которая предоставляет <strong>среду выполнения контейнеров</strong> (Docker, Containerd) на macOS и Linux.
+По сути, это альтернатива Docker Desktop, работающая "без головы" (headless) и управляемая исключительно через командную строку.</p>
+<p>В основе Colima лежит проект <strong>Lima</strong> (<code>Linux virtual machines on macOS</code>), который позволяет запускать виртуальные машины Linux на macOS с минимальными накладными расходами.
+Colima берет на себя всю сложную работу по настройке этой ВМ, установке Docker/Containerd и интеграции с локальной Docker CLI.</p>
+<div class="admonition info">
+<p class="admonition-title">Ключевая идея Colima</p>
+<p>Предоставить простой, быстрый и CLI-ориентированный способ запуска Docker-контейнеров на macOS, минимизируя потребление ресурсов и избавляясь от тяжеловесного GUI Docker Desktop.</p>
+</div>
+<hr />
+<h2 id="colima_1">🤔 Зачем использовать Colima?</h2>
+<p>Для инженера выбор инструментов часто сводится к эффективности, контролю и производительности.
+Colima выигрывает у Docker Desktop по нескольким ключевым параметрам:</p>
+<table>
+<thead>
+<tr>
+<th>Критерий</th>
+<th>Colima</th>
+<th>Docker Desktop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ресурсоемкость</strong></td>
+<td>✅ Очень низкая (легкая ВМ, нет GUI)</td>
+<td>❌ Высокая (полноценное приложение с GUI, фоновые процессы)</td>
+</tr>
+<tr>
+<td><strong>Производительность</strong></td>
+<td>✅ Быстрый запуск и работа, особенно на Apple Silicon (M1/M2)</td>
+<td>⚠️ Медленнее из-за дополнительных слоев и служб</td>
+</tr>
+<tr>
+<td><strong>Лицензия</strong></td>
+<td>✅ Полностью Open Source (MIT License)</td>
+<td>❌ Коммерческая лицензия для крупных компаний</td>
+</tr>
+<tr>
+<td><strong>Управление</strong></td>
+<td>✅ CLI-first, идеально для автоматизации и скриптов</td>
+<td>⚠️ GUI-ориентированный, хотя CLI тоже есть</td>
+</tr>
+<tr>
+<td><strong>Кастомизация</strong></td>
+<td>✅ Гибкая настройка ВМ (CPU, память, диски, архитектура)</td>
+<td>❌ Ограниченные возможности кастомизации через GUI</td>
+</tr>
+<tr>
+<td><strong>Простота</strong></td>
+<td>✅ Установил и забыл. <code>colima start</code> и все работает.</td>
+<td>⚠️ Требует больше внимания, обновлений, логинов</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_1">📋 Предварительные требования</h2>
+<p>Colima предоставляет среду для запуска контейнеров, но <strong>не включает в себя клиентские утилиты</strong>, такие как <code>docker</code> и <code>docker-compose</code>. Их необходимо установить отдельно через Homebrew.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>brew<span class="w"> </span>install<span class="w"> </span>docker<span class="w"> </span>docker-compose
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Про Docker и контейнеризацию</p>
+<p>Colima — это лишь один из способов запускать контейнеры. Чтобы глубже понять технологию, принципы работы Docker и другие способы установки, ознакомьтесь с подробной заметкой <a href="../../docker/installation/">здесь</a>.</p>
+</div>
+<hr />
+<h2 id="_2">🛠️ Подробное описание команд</h2>
+<p>Управление Colima осуществляется через простой и интуитивно понятный набор команд.</p>
+<div class="admonition info">
+<p class="admonition-title">Общие флаги</p>
+<p>Большинство команд поддерживают следующие флаги:</p>
+<table>
+<thead>
+<tr>
+<th>Флаг</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--profile, -p</code></td>
+<td>Указывает имя профиля (экземпляра) для выполнения команды.</td>
+</tr>
+<tr>
+<td><code>--verbose, -v</code></td>
+<td>Включает подробный режим логирования.</td>
+</tr>
+<tr>
+<td><code>--very-verbose</code></td>
+<td>Включает максимально подробный режим логирования для отладки.</td>
+</tr>
+<tr>
+<td><code>--help, -h</code></td>
+<td>Показывает справку по команде.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="colima-start"><code>colima start</code></h3>
+<p>Запускает и, при необходимости, создает виртуальную машину Colima. Это основная команда, с которой начинается работа.</p>
+<details class="tip">
+<summary>Ключевые флаги команды <code>start</code></summary>
+<table>
+<thead>
+<tr>
+<th>Флаг</th>
+<th>Описание</th>
+<th>Пример / Значение по умолчанию</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--activate</code></td>
+<td>Устанавливает данный экземпляр Colima как активный контекст для Docker и/или Kubernetes.</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--arch</code></td>
+<td>Архитектура виртуальной машины. <code>aarch64</code> для Apple Silicon (ARM), <code>x86_64</code> для Intel.</td>
+<td><code>aarch64</code> на Apple Silicon, <code>x86_64</code> на Intel</td>
+</tr>
+<tr>
+<td><code>--cpu</code></td>
+<td>Количество ядер CPU, выделяемых для ВМ.</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>--cpu-type</code></td>
+<td>Позволяет указать конкретный тип эмулируемого CPU (для QEMU). Полезно для совместимости.</td>
+<td><code>qemu64</code></td>
+</tr>
+<tr>
+<td><code>--disk</code></td>
+<td>Размер диска для ВМ в гибибайтах (GiB).</td>
+<td><code>60</code></td>
+</tr>
+<tr>
+<td><code>--disk-image</code></td>
+<td>Путь к пользовательскому образу диска. Позволяет использовать заранее подготовленные образы.</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--dns</code></td>
+<td>IP-адреса DNS-серверов для использования внутри ВМ.</td>
+<td><code>1.1.1.1</code>, <code>8.8.8.8</code></td>
+</tr>
+<tr>
+<td><code>--dns-host</code></td>
+<td>Добавляет кастомные DNS-записи в резолвер ВМ (аналог <code>/etc/hosts</code>).</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--edit</code></td>
+<td>Открывает конфигурационный файл в текстовом редакторе перед запуском.</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--editor</code></td>
+<td>Указывает, какой редактор использовать для <code>--edit</code>.</td>
+<td><code>vim</code>, <code>nano</code> и т.д.</td>
+</tr>
+<tr>
+<td><code>--env</code></td>
+<td>Устанавливает переменные окружения внутри ВМ.</td>
+<td><code>--env FOO=bar</code></td>
+</tr>
+<tr>
+<td><code>--foreground</code></td>
+<td>Запускает Colima в интерактивном режиме, логи выводятся в текущую консоль.</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--hostname</code></td>
+<td>Задает кастомное имя хоста для ВМ.</td>
+<td><code>colima</code></td>
+</tr>
+<tr>
+<td><code>--k3s-arg</code></td>
+<td>Передает дополнительные аргументы для k3s (если запущен с Kubernetes).</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--kubernetes</code></td>
+<td>Запускает Colima со встроенным кластером Kubernetes (k3s).</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--kubernetes-version</code></td>
+<td>Версия k3s для установки.</td>
+<td>Последняя стабильная</td>
+</tr>
+<tr>
+<td><code>--memory</code></td>
+<td>Объем оперативной памяти для ВМ в гибибайтах (GiB).</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>--mount</code></td>
+<td>Монтирует директории с хоста в ВМ. Суффикс <code>:w</code> дает права на запись.</td>
+<td><code>~/Projects:w</code></td>
+</tr>
+<tr>
+<td><code>--mount-inotify</code></td>
+<td>Включает проброс событий файловой системы (inotify) с хоста в ВМ. Полезно для hot-reload.</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--mount-type</code></td>
+<td>Тип монтирования: <code>sshfs</code>, <code>9p</code>, <code>virtiofs</code>.</td>
+<td><code>sshfs</code></td>
+</tr>
+<tr>
+<td><code>--nested-virtualization</code></td>
+<td>Включает вложенную виртуализацию. Позволяет запускать ВМ внутри ВМ.</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--network-address</code></td>
+<td>Назначает ВМ статический IP-адрес, доступный с хост-машины.</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--network-host-addresses</code></td>
+<td>Разрешает проброс портов на определенные IP-адреса хоста.</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--runtime</code></td>
+<td>Среда выполнения контейнеров.</td>
+<td><code>docker</code></td>
+</tr>
+<tr>
+<td><code>--save-config</code></td>
+<td>Сохраняет флаги, переданные при запуске, в конфигурационный файл профиля.</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--ssh-agent</code></td>
+<td>Пробрасывает SSH-агент с хоста в ВМ. Полезно для доступа к Git-репозиториям.</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--ssh-config</code></td>
+<td>Автоматически добавляет конфигурацию для SSH-доступа к ВМ в <code>~/.ssh/config</code>.</td>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>--ssh-port</code></td>
+<td>Порт на хост-машине для SSH-доступа к ВМ.</td>
+<td><code>0</code> (автоматический выбор)</td>
+</tr>
+<tr>
+<td><code>--vm-type</code></td>
+<td>Тип виртуализации. <code>vz</code> использует нативный фреймворк Apple. <code>qemu</code> — классический эмулятор.</td>
+<td><code>vz</code> на macOS 13+, <code>qemu</code> на остальных</td>
+</tr>
+<tr>
+<td><code>--vz-rosetta</code></td>
+<td>(Только для <code>vm-type: vz</code>) Включает Rosetta 2 для эмуляции x86_64 на ARM.</td>
+<td><code></code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="colima-stop"><code>colima stop</code></h3>
+<p>Останавливает запущенную ВМ Colima, временно освобождая ресурсы (CPU, память) и сохраняя при этом состояние диска ВМ.</p>
+<details class="tip">
+<summary>Ключевые флаги команды <code>stop</code></summary>
+<table>
+<thead>
+<tr>
+<th>Флаг</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--force</code></td>
+<td>Останавливает ВМ немедленно, без попытки корректного завершения работы служб.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="colima-restart"><code>colima restart</code></h3>
+<p>Перезапускает виртуальную машину. Эквивалентно последовательному вызову <code>colima stop</code> и <code>colima start</code> для применения изменений конфигурации.</p>
+<details class="tip">
+<summary>Ключевые флаги команды <code>restart</code></summary>
+<table>
+<thead>
+<tr>
+<th>Флаг</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--force</code></td>
+<td>При перезапуске выполняет принудительную остановку (<code>stop --force</code>).</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="colima-delete"><code>colima delete</code></h3>
+<p>Останавливает и полностью удаляет ВМ и все связанные с ней данные. Это деструктивная операция: все образы, контейнеры и тома будут удалены.</p>
+<details class="tip">
+<summary>Ключевые флаги команды <code>delete</code></summary>
+<table>
+<thead>
+<tr>
+<th>Флаг</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--force</code></td>
+<td>Удаляет ВМ без запроса подтверждения.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="colima-status"><code>colima status</code></h3>
+<p>Показывает текущий статус ВМ, потребляемые ресурсы и активный Docker-контекст.</p>
+<details class="tip">
+<summary>Ключевые флаги команды <code>status</code></summary>
+<table>
+<thead>
+<tr>
+<th>Флаг</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--extended</code></td>
+<td>Включает в вывод дополнительную информацию.</td>
+</tr>
+<tr>
+<td><code>--json</code></td>
+<td>Выводит результат в формате JSON.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="colima-list-ls"><code>colima list</code> / <code>ls</code></h3>
+<p>Показывает список всех созданных профилей (экземпляров) Colima и их статус.</p>
+<details class="tip">
+<summary>Ключевые флаги команды <code>list</code></summary>
+<table>
+<thead>
+<tr>
+<th>Флаг</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--json</code></td>
+<td>Выводит результат в формате JSON.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="colima-ssh"><code>colima ssh</code></h3>
+<p>Подключается по SSH к запущенной ВМ для отладки и выполнения команд непосредственно в Linux-окружении.</p>
+<h3 id="colima-ssh-config"><code>colima ssh-config</code></h3>
+<p>Показывает конфигурацию SSH для подключения к ВМ. Полезно для интеграции с внешними инструментами (VS Code, Ansible).</p>
+<h3 id="colima-kubernetes"><code>colima kubernetes</code></h3>
+<p>Группа команд для управления встроенным кластером Kubernetes (<code>k3s</code>). Позволяет запускать, останавливать, сбрасывать и удалять кластер.</p>
+<ul>
+<li><strong>Подкоманды:</strong> <code>start</code>, <code>stop</code>, <code>reset</code>, <code>delete</code>.</li>
+</ul>
+<h3 id="colima-nerdctl"><code>colima nerdctl</code></h3>
+<p>Выполняет команды <code>nerdctl</code> внутри ВМ. Используется при работе со средой выполнения <code>containerd</code>.</p>
+<details class="tip">
+<summary>Ключевые флаги подкоманды <code>install</code></summary>
+<table>
+<thead>
+<tr>
+<th>Флаг</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--force</code></td>
+<td>Перезаписывает <code>/usr/local/bin/nerdctl</code>, если он уже существует.</td>
+</tr>
+<tr>
+<td><code>--path</code></td>
+<td>Путь для установки бинарного файла <code>nerdctl</code>.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="colima-completion"><code>colima completion</code></h3>
+<p>Генерирует скрипт автодополнения для вашей командной оболочки (bash, zsh, fish) для ускорения работы в терминале.</p>
+<ul>
+<li><strong>Подкоманды:</strong> <code>bash</code>, <code>fish</code>, <code>powershell</code>, <code>zsh</code>.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Пример для zsh</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>colima<span class="w"> </span>completion<span class="w"> </span>zsh<span class="w"> </span>&gt;<span class="w"> </span>/usr/local/share/zsh/site-functions/_colima
+</code></pre></div>
+</div>
+<h3 id="colima-template"><code>colima template</code></h3>
+<p>Позволяет просматривать или редактировать шаблон конфигурации по умолчанию, чтобы задать глобальные настройки для всех будущих экземпляров.</p>
+<details class="tip">
+<summary>Ключевые флаги команды <code>template</code></summary>
+<table>
+<thead>
+<tr>
+<th>Флаг</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--editor</code></td>
+<td>Указывает, какой редактор использовать (vim, nano, code).</td>
+</tr>
+<tr>
+<td><code>--print</code></td>
+<td>Показывает путь к файлу конфигурации без его открытия.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="colima-prune"><code>colima prune</code></h3>
+<p>Удаляет кэшированные ассеты (например, загруженные образы ВМ) для освобождения места на диске.</p>
+<details class="tip">
+<summary>Ключевые флаги команды <code>prune</code></summary>
+<table>
+<thead>
+<tr>
+<th>Флаг</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--all</code></td>
+<td>Включает в очистку ассеты Lima.</td>
+</tr>
+<tr>
+<td><code>--force</code></td>
+<td>Выполняет очистку без запроса подтверждения.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="colima-update"><code>colima update</code></h3>
+<p>Обновляет версию среды выполнения контейнеров (Docker, containerd) внутри ВМ без ее пересоздания.</p>
+<h3 id="colima-version"><code>colima version</code></h3>
+<p>Показывает версию самой утилиты Colima.</p>
+<h3 id="colima-help"><code>colima help</code></h3>
+<p>Показывает справку по любой команде.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Справочник Golang разработчика — <a href="#__consent">Изменить настройки cookies</a>
+
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/arthur-lokhov/go-notes.git" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Использование cookies</h4>
+<p>Мы используем cookies для распознавания ваших повторных посещений и предпочтений, а также для измерения эффективности нашей документации и того, насколько легко пользователи находят нужную информацию. Согласившись, вы помогаете нам сделать сайт лучше и удобнее.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.expand", "navigation.sections", "header.autohide", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>
