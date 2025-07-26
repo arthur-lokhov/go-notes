@@ -95,14 +95,16 @@ nav:
     - go/index.md
     - Основы языка:
       - go/packages.md
-      # - go/scopes.md
+      - go/scopes.md
       - go/variables.md
       # - go/const.md
       # - go/types.md
       # - go/functions.md
       - go/structs.md
     - Продвинутые темы:
+      - go/advanced/gocli.md
       - go/advanced/modules.md
+      - go/advanced/workspace.md
       # - go/advanced/godoc.md
     - Стандартная библиотека:
       - go/std/flag.md
