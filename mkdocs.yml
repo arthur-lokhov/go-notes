@@ -3,7 +3,7 @@ site_description: Справочник Golang разработчика
 site_author: arthur-lokhov
 site_url: https://arthur-lokhov.github.io/go-notes
 extra:
-  homepage: https://arthur-lokhov.github.io/go-notes 
+  homepage: https://arthur-lokhov.github.io/go-notes
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/arthur-lokhov/go-notes.git
@@ -53,7 +53,6 @@ theme:
     - content.code.copy
     - content.code.select
     - content.code.annotate
-
 markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
@@ -83,34 +82,202 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-
 plugins:
   - search
   - tags
   - privacy
-
 nav:
   - Главная: index.md
   - 📘 Go:
-    - go/index.md
-    - Основы языка:
-      - go/packages.md
-      - go/scopes.md
-      - go/variables.md
-      # - go/const.md
-      # - go/types.md
-      # - go/functions.md
-      - go/structs.md
-    - Продвинутые темы:
-      - go/advanced/gocli.md
-      - go/advanced/modules.md
-      - go/advanced/workspace.md
-      # - go/advanced/godoc.md
-    - Стандартная библиотека:
-      - go/std/flag.md
-  - 🏗️ 12F:
-    - 12f/index.md
-    - 12f/0_12f.md
+      - go/index.md
+      - Основы языка:
+          - go/packages.md
+          - go/scopes.md
+          - go/variables.md
+          # - go/const.md
+          # - go/types.md
+          # - go/functions.md
+          - go/structs.md
+      - Продвинутые темы:
+          - go/advanced/gocli.md
+          - go/advanced/environment-variables.md
+          - go/advanced/modules.md
+          - go/advanced/workspace.md
+          - go/advanced/godoc.md
+          - go/advanced/directives.md
+      - Стандартная библиотека:
+          - go/std/flag.md
+  - 🐧 Linux:
+      - Архитектура системы: linux/architecture.md
+      - 🧠 Ядро:
+          - Модули: linux/kernel/modules.md
+          - eBPF: linux/kernel/ebpf.md
+          - Сборка и настройка ядра: linux/kernel/kernel_build.md
+          - Драйверы устройств: linux/kernel/drivers.md
+          - Планировщики задач: linux/kernel/schedulers.md
+          - Менеджер памяти: linux/kernel/memory_management.md
+          - Системные вызовы: linux/kernel/syscalls.md
+          - Обработка прерываний: linux/kernel/interrupts.md
+          - Отладка ядра: linux/kernel/debug.md
+      - 🔧 Системные компоненты:
+          - Устройства и udev: linux/core/udev.md
+          - D-Bus: linux/core/dbus.md
+          - Системы инициализации: linux/core/boot.md
+          - Systemd: linux/core/systemd.md
+          - Процессы и сессии: linux/core/processes.md
+          - Изоляция ресурсов: linux/core/isolation.md
+          - Графическая подсистема: linux/core/graphics.md
+      - 🗃️ Хранилище:
+          - Файловая система: linux/storage/filesystem.md
+          - Монтирование: linux/storage/mounting.md
+          - RAID: linux/storage/raid.md
+          - LVM: linux/storage/lvm.md
+          - Шифрование: linux/storage/encryption.md
+          - Резервное копирование: linux/storage/backup.md
+      - 🔐 Контроль доступа:
+          - Пользователи и права: linux/auth/auth.md
+          - Sudo и политики доступа: linux/auth/sudo.md
+          - PAM: linux/auth/pam.md
+          - LDAP: linux/auth/ldap.md
+          - Polkit: linux/auth/polkit.md
+          - Logind: linux/auth/logind.md
+      - 🛡️ Безопасность и аудит:
+          - Auditd: linux/security/auditd.md
+          - SELinux: linux/security/selinux.md
+          - AppArmor: linux/security/apparmor.md
+          - Hardening ядра: linux/security/hardening.md
+  - 🌐 Сети:
+      - 🧭 Основы:
+          - Модели (OSI, TCP/IP): networking/basics/models.md
+          - Физический уровень: networking/basics/physical.md
+          - Топологии: networking/basics/topologies.md
+          - IP (v4/v6): networking/basics/ip.md
+          - ARP/NDP/ICMP: networking/basics/arp_ndp_icmp.md
+          - DNS: networking/basics/dns.md
+          - DHCP: networking/basics/dhcp.md
+          - NAT: networking/basics/nat.md
+          - Маршрутизация: networking/basics/routing.md
+          - QoS: networking/basics/qos.md
+          - VLAN/VXLAN: networking/basics/vlan_vxlan.md
+          - Прокси: networking/basics/proxy.md
+          - CDN/Anycast: networking/basics/cdn_anycast.md
+            # - 🐧 Linux:
+            #     - Интерфейсы: networking/linux/interfaces.md
+            #     - Маршрутизация: networking/linux/routing.md
+            #     - Траблшутинг: networking/linux/troubleshooting.md
+            #     - Firewall (iptables/nftables): networking/linux/firewall.md
+            #     - Firewalld/UFW: networking/linux/firewalld_ufw.md
+            #     - VPN: networking/linux/vpn.md
+            #     - DNS: networking/linux/dns.md
+            #     - DHCP-сервер: networking/linux/dhcp_server.md
+            #     - Туннелирование: networking/linux/tunneling.md
+            #     - Мониторинг: networking/linux/monitoring.md
+            #     - Балансировка: networking/linux/load_balancing.md
+            #     - Traffic Control: networking/linux/traffic_control.md
+            #     - Namespaces: networking/linux/namespaces.md
+            # - ☁️ Облачные сети:
+            #     - SDN: networking/cloud/sdn.md
+            #     - Overlay: networking/cloud/overlay.md
+            #     - Service Mesh: networking/cloud/service_mesh.md
+            #     - API-шлюзы: networking/cloud/api_gateways.md
+            #     - Cloud Networks: networking/cloud/cloud_networks.md
+            #     - Kubernetes Networking: networking/cloud/k8s_networking.md
+            # - 🛡️ Безопасность:
+            #     - MITM: networking/security/mitm.md
+            #     - IDS/IPS: networking/security/ids_ips.md
+            #     - DDoS: networking/security/ddos.md
+            #     - Аудит: networking/security/audit.md
+            #     - Zero Trust: networking/security/zero_trust.md
+            #     - PKI: networking/security/pki.md
+  - 🧱 Контейнеры:
+      - containers/index.md
+      - 🐳 Docker:
+          - Установка: containers/docker/installation.md
+          - Docker CLI: containers/docker/docker-cli.md
+          - Архитектура Docker: containers/docker/architecture.md
+          - Dockerfile: containers/docker/dockerfile.md
+          - BuildKit: containers/docker/buildkit.md
+          - Файловая система: containers/docker/filesystem.md
+          - Тома в Docker: containers/docker/volumes.md
+          - Сети в Docker: containers/docker/networks.md
+          - Логирование в Docker: containers/docker/logging.md
+          - Docker Compose: containers/docker/compose.md
+          - Процессы в Docker: containers/docker/processes.md
+          - Плагины в Docker: containers/docker/plugins.md
+          - Работа с реестрами: containers/docker/registry.md
+          - Безопасность: containers/docker/security.md
+            # - ☸️ Kubernetes:
+            #     - containers/kubernetes/index.md
+            #     - Архитектура: containers/kubernetes/architecture.md
+            #     - Рабочие нагрузки: containers/kubernetes/workloads.md
+            #     - Планирование: containers/kubernetes/scheduling.md
+            #     - Пробы: containers/kubernetes/probes.md
+            #     - Ресурсы: containers/kubernetes/resources.md
+            #     - Сеть: containers/kubernetes/networking.md
+            #     - Service Mesh: containers/kubernetes/service-mesh.md
+            #     - Хранилище: containers/kubernetes/storage.md
+            #     - Безопасность: containers/kubernetes/security.md
+            #     - API: containers/kubernetes/api.md
+            #     - Namespaces: containers/kubernetes/namespaces.md
+  - 🚀 DevOps:
+      - devops/index.md
+      - CI/CD:
+          - devops/cicd/index.md
+          - Jenkins: devops/cicd/jenkins.md
+          - GitLab CI: devops/cicd/gitlab-ci.md
+          - GitHub Actions: devops/cicd/github-actions.md
+      - IaC:
+          - devops/iac/index.md
+          - Terraform: devops/iac/terraform.md
+          - Ansible: devops/iac/ansible.md
+      - Мониторинг:
+          - devops/monitoring/index.md
+          - Prometheus: devops/monitoring/prometheus.md
+          - Grafana: devops/monitoring/grafana.md
+          - Alertmanager: devops/monitoring/alertmanager.md
+          - OpenTelemetry: devops/monitoring/opentelemetry.md
+          - cAdvisor: devops/monitoring/cadvisor.md
+          - Node Exporter: devops/monitoring/node_exporter.md
+          - Uptime Kuma: devops/monitoring/uptime_kuma.md
+      - Логирование:
+          - devops/logging/index.md
+          - Loki: devops/logging/loki.md
+          - Fluentd: devops/logging/fluentd.md
+          - Vector: devops/logging/vector.md
+          - Logstash: devops/logging/logstash.md
+          - ELK Stack: devops/logging/elk.md
+          - OpenSearch: devops/logging/opensearch.md
+      - Сети:
+          - devops/networking/index.md
+          - Cilium: devops/networking/cilium.md
+          - Calico: devops/networking/calico.md
+          - Flannel: devops/networking/flannel.md
+          - Consul: devops/networking/consul.md
+          - Traefik: devops/networking/traefik.md
+          - Nginx: devops/networking/nginx.md
+          - HAProxy: devops/networking/haproxy.md
+      - Service Mesh:
+          - devops/service-mesh/index.md
+          - Istio: devops/service-mesh/istio.md
+          - Kuma: devops/service-mesh/kuma.md
+      - Реестры:
+          - devops/registry/index.md
+          - Harbor: devops/registry/harbor.md
+      - Управление:
+          - devops/management/index.md
+          - Portainer: devops/management/portainer.md
+      - GitOps:
+          - devops/gitops/index.md
+          - Argo CD: devops/gitops/argocd.md
+          - Flux: devops/gitops/flux.md
+      - Аутентификация:
+          - devops/authentication/index.md
+          - Keycloak: devops/authentication/keycloak.md
+          - Authentik: devops/authentication/authentik.md
+          - Authelia: devops/authentication/authelia.md
+  # - 🏗️ 12F:
+  #   - 12f/index.md
+  #   - 12f/0_12f.md
   - 🛠️ Инструменты:
-    - tools/index.md
-    - tools/colima.md
+      - tools/index.md
+      - tools/colima.md
