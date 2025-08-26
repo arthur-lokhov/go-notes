@@ -109,6 +109,7 @@ nav:
           - go/std/flag.md
   - 🐧 Linux:
       - Архитектура системы: linux/architecture.md
+      - Траблшутинг: linux/troubleshooting.md
       - 🧠 Ядро:
           - Модули: linux/kernel/modules.md
           - eBPF: linux/kernel/ebpf.md
@@ -283,4 +284,8 @@ nav:
   - 🛠️ Инструменты:
       - tools/index.md
       - tools/colima.md
+      - tools/git.md
       - tools/ssh.md
+  - Заметки:
+      - notes/opensuse_for_devops.md
+      - notes/vpn_setup_guide.md

@@ -79,7 +79,7 @@ type Value interface {
 
 ```go
 type Getter interface {
-Value
+    Value
     Get() any
 }
 ```
