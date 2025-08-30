@@ -284,6 +284,7 @@ nav:
   - 🛠️ Инструменты:
       - tools/index.md
       - tools/colima.md
+      - tools/gpg.md
       - tools/git.md
       - tools/ssh.md
   - Заметки:
