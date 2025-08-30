@@ -288,5 +288,4 @@ nav:
       - tools/git.md
       - tools/ssh.md
   - Заметки:
-      - notes/opensuse_for_devops.md
       - notes/vpn_setup_guide.md
