@@ -2,7 +2,7 @@ version: '3'
 services:
   mkdocs:
     image: squidfunk/mkdocs-material
-    container_name: go-interview-docs
+    container_name: go-docs
     volumes:
       - .:/docs
     ports:

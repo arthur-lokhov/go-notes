@@ -550,23 +550,7 @@ func main() {
 - `func (T) Method()` - **значение как тип**;
 - `func (*T) Method()` - **указатель как тип**.
 
-```go hl_lines="7 12"
-type Person struct {
-    Name string
-    Age  int
-}
 
-// Приёмник 'p' имеет тип Person (значение)
-func (p Person) Greet() string {
-    return fmt.Sprintf("Hello, my name is %s and I am %d years old.", p.Name, p.Age)
-}
-
-// Приёмник 'p' имеет тип *Person (указатель)
-func (p *Person) CelebrateBirthday() {
-	p.Age++ // Изменяем поле Age внутри структуры
-	fmt.Printf("%s is now %d years old! Happy birthday!\n", p.Name, p.Age)
-}
-```
 
 !!! note "Выбор между `T` и `*T`"
 

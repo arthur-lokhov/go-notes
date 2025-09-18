@@ -94,10 +94,23 @@ nav:
           - go/packages.md
           - go/scopes.md
           - go/variables.md
-          # - go/const.md
-          # - go/types.md
-          # - go/functions.md
+          - go/const.md
+          - go/types.md
+          - go/functions.md
+          - go/control-flow.md
           - go/structs.md
+          - go/interfaces.md
+          - go/error-handling.md
+      - Базовые типы:
+          - go/types/numbers.md
+          - go/types/strings.md
+          - go/types/booleans.md
+      - Составные типы:
+          - go/types/arrays-and-slices.md
+          - go/types/maps.md
+          - go/types/pointers.md
+      - Дженерики:
+          - go/types/generics.md
       - Продвинутые темы:
           - go/advanced/gocli.md
           - go/advanced/environment-variables.md
@@ -105,6 +118,27 @@ nav:
           - go/advanced/workspace.md
           - go/advanced/godoc.md
           - go/advanced/directives.md
+          - go/advanced/cgo.md
+          - go/advanced/webassembly.md
+      - Конкурентность:
+          - go/concurrency/index.md
+          - go/concurrency/goroutines.md
+          - go/concurrency/channels.md
+          - go/concurrency/sync-primitives.md
+      - Система сборки:
+          - go/build/index.md
+      - Память и рантайм:
+          - go/memory/index.md
+          - go/memory/memory-management.md
+          - go/memory/garbage-collector.md
+          - go/memory/race-detector.md
+          - go/memory/memory-sanitizer.md
+      - Профилирование:
+          - go/profiling/index.md
+          - go/profiling/pprof.md
+          - go/profiling/trace.md
+      - Рефлексия:
+          - go/reflection.md
       - Стандартная библиотека:
           - go/std/flag.md
   - 🐧 Linux:
