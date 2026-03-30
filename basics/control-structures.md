@@ -497,6 +497,275 @@ for {
 
 ---
 
+## 🧬 Внутреннее устройство: как компилятор видит управляющие конструкции
+
+Когда компилятор обрабатывает управляющие конструкции, он преобразует их в **граф потока управления** (Control Flow Graph, CFG).
+
+### Граф потока управления (CFG)
+
+**CFG** — это представление программы, где:
+
+- **Блоки** — последовательности инструкций без ветвлений
+- **Рёбра** — переходы между блоками (ветвления)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  if x > 0 { ... } else { ... }                              │
+│                                                             │
+│  [Entry]                                                    │
+│     │                                                       │
+│     ▼                                                       │
+│  [x > 0?] ← условие (branch)                                │
+│   │    │                                                    │
+│   │    └──────────────┐                                     │
+│   ▼                   ▼                                     │
+│  [then]            [else]  ← блоки                          │
+│   │                   │                                     │
+│   └────────┬──────────┘                                     │
+│            ▼                                                │
+│         [Exit]                                              │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### if/else в CFG
+
+```go
+if x > 0 {
+    fmt.Println("positive")
+} else {
+    fmt.Println("negative")
+}
+```
+
+**Компилятор преобразует в:**
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Block 1 (entry):                                           │
+│    t1 = x > 0                                               │
+│    branch t1 to Block 2, Block 3                            │
+│                                                             │
+│  Block 2 (then):                                            │
+│    call fmt.Println("positive")                             │
+│    jump to Block 4                                          │
+│                                                             │
+│  Block 3 (else):                                            │
+│    call fmt.Println("negative")                             │
+│    jump to Block 4                                          │
+│                                                             │
+│  Block 4 (exit):                                            │
+│    return                                                   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### for цикл в CFG
+
+```go
+for i := 0; i < 10; i++ {
+    fmt.Println(i)
+}
+```
+
+**Компилятор преобразует в:**
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Block 1 (init):                                            │
+│    i = 0                                                    │
+│    jump to Block 2                                          │
+│                                                             │
+│  Block 2 (cond):                                            │
+│    t1 = i < 10                                              │
+│    branch t1 to Block 3, Block 5                            │
+│                                                             │
+│  Block 3 (body):                                            │
+│    call fmt.Println(i)                                      │
+│    jump to Block 4                                          │
+│                                                             │
+│  Block 4 (incr):                                            │
+│    i = i + 1                                                │
+│    jump to Block 2                                          │
+│                                                             │
+│  Block 5 (exit):                                            │
+│    return                                                   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Цикл = обратное ребро (back edge)** от Block 4 к Block 2.
+
+### break/continue в CFG
+
+```go
+for i := 0; i < 10; i++ {
+    if i == 5 {
+        break
+    }
+    if i%2 == 0 {
+        continue
+    }
+    fmt.Println(i)
+}
+```
+
+**Компилятор преобразует в:**
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Block 1 (init): i = 0 → Block 2                            │
+│  Block 2 (cond): i < 10 → Block 3, Block 7 (exit)           │
+│  Block 3 (body):                                            │
+│    i == 5 → Block 7 (break!)                                │
+│    i%2 == 0 → Block 4 (continue!)                           │
+│    Block 4 (incr): i = i + 1 → Block 2                      │
+│    Block 5: println(i) → Block 4                            │
+│  Block 7 (exit): return                                     │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**break** → переход к блоку после цикла.
+**continue** → переход к блоку инкремента.
+
+### switch в CFG
+
+```go
+switch x {
+case 1:
+    fmt.Println("one")
+case 2:
+    fmt.Println("two")
+default:
+    fmt.Println("other")
+}
+```
+
+**Компилятор преобразует в:**
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Block 1:                                                   │
+│    branch x to Block 2 (x==1), Block 3 (x==2), Block 4      │
+│                                                             │
+│  Block 2 (case 1):                                          │
+│    println("one")                                           │
+│    jump to Block 5                                          │
+│                                                             │
+│  Block 3 (case 2):                                          │
+│    println("two")                                           │
+│    jump to Block 5                                          │
+│                                                             │
+│  Block 4 (default):                                         │
+│    println("other")                                         │
+│    jump to Block 5                                          │
+│                                                             │
+│  Block 5 (exit):                                            │
+│    return                                                   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### range в CFG
+
+```go
+for i, v := range slice {
+    fmt.Println(i, v)
+}
+```
+
+**Компилятор преобразует в:**
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Block 1 (init):                                            │
+│    len = len(slice)                                         │
+│    i = 0                                                    │
+│    jump to Block 2                                          │
+│                                                             │
+│  Block 2 (cond):                                            │
+│    t1 = i < len                                             │
+│    branch t1 to Block 3, Block 5                            │
+│                                                             │
+│  Block 3 (body):                                            │
+│    v = slice[i]                                             │
+│    call println(i, v)                                       │
+│    jump to Block 4                                          │
+│                                                             │
+│  Block 4 (incr):                                            │
+│    i = i + 1                                                │
+│    jump to Block 2                                          │
+│                                                             │
+│  Block 5 (exit):                                            │
+│    return                                                   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### SSA представление
+
+После построения CFG, компилятор преобразует код в **SSA** (Static Single Assignment):
+
+```go
+// Исходный код
+x := 1
+if x > 0 {
+    x = 2
+} else {
+    x = 3
+}
+fmt.Println(x)
+```
+
+**SSA представление:**
+
+```
+Block 1:
+    x1 = 1
+    t1 = x1 > 0
+    branch t1 to Block 2, Block 3
+
+Block 2 (then):
+    x2 = 2
+    jump to Block 4
+
+Block 3 (else):
+    x3 = 3
+    jump to Block 4
+
+Block 4 (merge):
+    x4 = φ(x2, x3)  // φ-функция выбирает значение
+    call println(x4)
+```
+
+**φ-функция** выбирает правильное значение в зависимости от того, по какому пути пришли.
+
+### Оптимизации на CFG
+
+**1. Dead Code Elimination:**
+
+```go
+if false {
+    // мёртвый код → удаляется
+}
+```
+
+**2. Constant Folding:**
+
+```go
+if 5 > 0 {  // всегда true → else удаляется
+    // ...
+} else {
+    // мёртвый код
+}
+```
+
+**3. Loop Invariant Code Motion:**
+
+```go
+for i := 0; i < n; i++ {
+    x := expensive()  // выносится за цикл
+    use(x, i)
+}
+```
+
+---
+
 ## 🎯 Итог
 
 Управляющие конструкции в Go проще, чем во многих языках, но достаточно мощные для любых задач.
